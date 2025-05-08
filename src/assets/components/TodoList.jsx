@@ -1,5 +1,10 @@
 import React from "react";
-
+import Todo from "./Todo";
 export default function TodoList() {
-  return <p>This is TodoList</p>;
+  return (
+    <>
+      <Todo />
+      <Todo />
+    </>
+  );
 }
