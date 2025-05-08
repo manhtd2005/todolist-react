@@ -7,6 +7,6 @@ const ButtonStyled = styled(Button)`
   text-align: left;
 `;
 
-export default function Todo() {
-  return <ButtonStyled shouldFitContainer>Item 1</ButtonStyled>;
+export default function Todo({ todo }) {
+  return <ButtonStyled shouldFitContainer>{todo.name}</ButtonStyled>;
 }

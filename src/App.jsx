@@ -1,8 +1,25 @@
 import TodoList from "./assets/components/TodoList";
 import Textfield from "@atlaskit/textfield";
 import Button from "@atlaskit/button";
+import { useState } from "react";
+import { v4 } from "uuid";
 
 function App() {
+  const [todoList, setTodolist] = useState([]); //array
+  const [textInput, setTextInput] = useState("");
+
+  const onTextInputChange = (e) => {
+    setTextInput(e.target.value);
+  };
+
+  const onAddBtnClick = () => {
+    // Them text vao danh sach todolist
+    setTodolist([
+      ...todoList,
+      { id: v4(), name: textInput, isCompleted: false },
+    ]);
+  };
+
   return (
     <>
       <h3>Danh sách cần làm</h3>
@@ -10,12 +27,18 @@ function App() {
         name="add-todo"
         placeholder="Thêm việc cần làm..."
         elemAfterInput={
-          <Button isDisabled={true} appearance="primary">
+          <Button
+            isDisabled={!textInput}
+            appearance="primary"
+            onClick={onAddBtnClick}
+          >
             Thêm
           </Button>
         }
+        value={textInput}
+        onChange={onTextInputChange}
       ></Textfield>
-      <TodoList />
+      <TodoList todoList={todoList} />
     </>
   );
 }
